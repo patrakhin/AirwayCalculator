@@ -1,0 +1,3 @@
+23:02:20.370 [main] ERROR test_task.example.App - Ошибка при чтении файла tickets.json: Cannot construct instance of `test_task.example.AirTicket` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+ at [Source: UNKNOWN; byte offset: #UNKNOWN]
+23:02:20.380 [main] ERROR test_task.example.App - Нет данных в файле tickets.json.
