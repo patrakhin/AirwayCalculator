@@ -23,6 +23,10 @@ public class App {
         }
 
         List<EntityAirTicket> tickets = IncomingFileReader.readFlightTickets(filePath);
+        List<EntityAirTicket> filteredTicket = TicketFilter.getFilterTickets(tickets);
+        List<DTO> transformedTicket = TransformCarrier.getTransformTickets(filteredTicket);
+        List<DTO> sortedCarrier = SortedCarrier.getSortedCarrier(transformedTicket);
+        Map<String, String> statisticPrice = StatisticsPrice.getStatisticPrice(sortedCarrier);
 
         if (tickets.isEmpty()) {
             // Если список пуст, сообщим об ошибке и бросим новое исключение IOException
@@ -32,14 +36,8 @@ public class App {
             // Бросаем новое исключение с сообщением
             throw new EmptyTicketListException(errorMessage);
         }
-        // Получаем первый билет из списка
-        EntityAirTicket firstTicket = tickets.get(0);
-
-        // Извлекаем origin_name и destination_name
-        String origin_name = firstTicket.getOrigin_name();
-        String destination_name = firstTicket.getDestination_name();
         // Добавим запись в Excel
-        ExcelWriter.writeDataToExcel(tickets, origin_name, destination_name);
+        Writer.writeStatisticsToExcel(statisticPrice,sortedCarrier);
     }
 
     private static String getUserInputPath() {
