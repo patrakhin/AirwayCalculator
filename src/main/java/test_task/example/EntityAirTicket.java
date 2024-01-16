@@ -1,18 +1,10 @@
 package test_task.example;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class AirTicket {
-    private static final Logger logger = LogManager.getLogger(AirTicket.class);
+public class EntityAirTicket {
 
     private final String origin;
     private final String origin_name;
@@ -36,7 +28,7 @@ public class AirTicket {
     private int price;
 
     @JsonCreator
-    public AirTicket(
+    public EntityAirTicket(
             @JsonProperty("origin") String origin,
             @JsonProperty("origin_name") String origin_name,
             @JsonProperty("destination") String destination,
@@ -105,32 +97,5 @@ public class AirTicket {
     public int getPrice() {
         return price;
     }
-
-    // Метод для расчета времени полета в часах
-/*    public double calculateFlightTime() {
-        String datePattern = "dd.MM.yy";
-        String timePattern = "HH:mm";
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
-        SimpleDateFormat timeFormat = new SimpleDateFormat(timePattern);
-
-        try {
-            Date departureDate = dateFormat.parse(departure_date);
-            Date departureTime = timeFormat.parse(departure_time);
-
-            Date arrivalDate = dateFormat.parse(arrival_date);
-            Date arrivalTime = timeFormat.parse(arrival_time);
-
-            // Комбинирование даты и времени перед расчетом времени полета
-            long departureDateTimeMillis = departureDate.getTime() + departureTime.getTime();
-            long arrivalDateTimeMillis = arrivalDate.getTime() + arrivalTime.getTime();
-
-            long timeDifference = arrivalDateTimeMillis - departureDateTimeMillis;
-            return (double) timeDifference / (60 * 60 * 1000); // в часах
-        } catch (ParseException e) {
-            logger.error("Ошибка при расчете времени полета", e);
-            return 0;
-        }
-    }*/
 }
 

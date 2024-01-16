@@ -1,3 +1,19 @@
-23:02:20.370 [main] ERROR test_task.example.App - Ошибка при чтении файла tickets.json: Cannot construct instance of `test_task.example.AirTicket` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+23:02:20.370 [main] ERROR test_task.example.App - Ошибка при чтении файла tickets.json: Cannot construct instance of `test_task.example.EntityAirTicket` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
  at [Source: UNKNOWN; byte offset: #UNKNOWN]
 23:02:20.380 [main] ERROR test_task.example.App - Нет данных в файле tickets.json.
+23:22:34.218 [main] INFO  test_task.example.App - 
+Разница между средней ценой и медианой для полета между: VVO и: TLV: 
+23:22:34.405 [main] INFO  test_task.example.App - Средняя цена: 13960.00
+23:22:34.408 [main] INFO  test_task.example.App - Медиана: 13500.00
+23:22:34.409 [main] INFO  test_task.example.App - Разница: 460.00
+23:22:36.218 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+00:35:58.028 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+00:43:59.041 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+00:53:25.007 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+01:29:24.020 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+01:51:53.640 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+01:58:47.607 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+02:50:18.787 [main] INFO  test_task.example.PriceStatsCalculator - Нет данных о ценах для указанных маршрута и направления.
+02:50:19.198 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+02:52:25.106 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+03:12:55.603 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
