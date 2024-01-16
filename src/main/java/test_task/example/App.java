@@ -9,8 +9,13 @@ import java.util.*;
 
 public class App {
     private static final Logger logger = LogManager.getLogger(App.class);
+    private DataProcessor dataProcessor;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CustomDataProcessingException {
+        App app = new App();
+        app.start(args);
+    }
+    private void start (String[] args) throws IOException, CustomDataProcessingException {
         String filePath;
 
         if (args.length == 0) {
@@ -23,10 +28,6 @@ public class App {
         }
 
         List<EntityAirTicket> tickets = IncomingFileReader.readFlightTickets(filePath);
-        List<EntityAirTicket> filteredTicket = TicketFilter.getFilterTickets(tickets);
-        List<DTO> transformedTicket = TransformCarrier.getTransformTickets(filteredTicket);
-        List<DTO> sortedCarrier = SortedCarrier.getSortedCarrier(transformedTicket);
-        Map<String, String> statisticPrice = StatisticsPrice.getStatisticPrice(sortedCarrier);
 
         if (tickets.isEmpty()) {
             // Если список пуст, сообщим об ошибке и бросим новое исключение IOException
@@ -37,10 +38,11 @@ public class App {
             throw new EmptyTicketListException(errorMessage);
         }
         // Добавим запись в Excel
-        Writer.writeStatisticsToExcel(statisticPrice,sortedCarrier);
+        dataProcessor = new DataProcessor();
+        dataProcessor.writingData(IncomingFileReader.readFlightTickets(filePath));
     }
 
-    private static String getUserInputPath() {
+    private String getUserInputPath() {
         // Если пользователь вводит путь вручную
         return new java.util.Scanner(System.in).nextLine();
     }

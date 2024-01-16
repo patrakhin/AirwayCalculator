@@ -1,17 +1,18 @@
 package test_task.example;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class StatisticsPrice {
+    private StatisticsPrice() {
+        throw new IllegalStateException("StatisticsPrice class");
+    }
+
     public static Map<String, String> getStatisticPrice(List<DTO> sortedCarrier) {
         // Извлекаем цены в список
         List<Double> prices = sortedCarrier.stream()
-                .map(DTO::getRoundedPrice)
-                .collect(Collectors.toList());
+                .map(DTO::roundedPrice)
+                .toList();
 
         // Вычисляем среднюю цену
         double average = prices.stream()

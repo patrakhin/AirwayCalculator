@@ -1,5 +1,7 @@
 package test_task.example;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -10,6 +12,10 @@ import java.util.Map;
 
 
 public class Writer {
+    private static final Logger logger = LogManager.getLogger(Writer.class);
+    private Writer(){
+        throw new IllegalStateException("Writer class");
+    }
     public static void writeStatisticsToExcel(Map<String, String> statisticPrice, List<DTO> sortedCarrier) throws IOException {
         try (Workbook workbook = new XSSFWorkbook()) {
             // Создаем лист для данных
@@ -28,11 +34,9 @@ public class Writer {
             try (FileOutputStream fileOut = new FileOutputStream("AirwayData.xlsx")) {
                 workbook.write(fileOut);
             }
-
-            System.out.println("Excel файл успешно создан!");
-
+            logger.info("Excel файл успешно создан!");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при создании и записи файла AirwayData.xlsx: {}", e.getMessage());
         }
     }
 
@@ -45,8 +49,8 @@ public class Writer {
         // Заполняем данными
         for (int i = 0; i < sortedList.size(); i++) {
             Row row = sheet.createRow(i + 1);
-            row.createCell(0).setCellValue(sortedList.get(i).getCarrier());
-            row.createCell(1).setCellValue(sortedList.get(i).getFlightTime());
+            row.createCell(0).setCellValue(sortedList.get(i).carrier());
+            row.createCell(1).setCellValue(sortedList.get(i).flightTime());
         }
     }
 

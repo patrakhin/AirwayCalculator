@@ -14,6 +14,10 @@ import java.util.List;
 public class IncomingFileReader {
     private static final Logger logger = LogManager.getLogger(IncomingFileReader.class);
 
+    private IncomingFileReader(){
+        throw new IllegalStateException("IncomingFileReader class");
+    }
+
     public static List<EntityAirTicket> readFlightTickets(String filePath) throws IOException {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -26,7 +30,6 @@ public class IncomingFileReader {
                 EntityAirTicket ticket = objectMapper.treeToValue(ticketNode, EntityAirTicket.class);
                 tickets.add(ticket);
             }
-
             return tickets;
         } catch (IOException e) {
             logger.error("Ошибка при чтении файла tickets.json: {}", e.getMessage());

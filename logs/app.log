@@ -19,3 +19,6 @@
 03:12:55.603 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
 12:17:27.019 [main] INFO  test_task.example.App - Введите путь к файлу tickets.json: 
 12:21:59.220 [main] INFO  test_task.example.ExcelWriter - Данные успешно записаны в AirwayData.xlsx.
+22:55:55.998 [main] INFO  test_task.example.Writer - Excel файл успешно создан!
+23:05:49.929 [main] INFO  test_task.example.Writer - Excel файл успешно создан!
+23:23:37.745 [main] INFO  test_task.example.Writer - Excel файл успешно создан!
