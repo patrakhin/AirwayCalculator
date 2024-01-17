@@ -11,7 +11,7 @@ public class DataProcessor {
             List<EntityAirTicket> filteredTicket = TicketFilter.getFilterTickets(tickets);
             List<DTO> transformedTicket = TransformCarrier.getTransformTickets(filteredTicket);
             List<DTO> sortedCarrier = SortedCarrier.getSortedCarrier(transformedTicket);
-            Map<String, String> statisticPrice = StatisticsPrice.getStatisticPrice(sortedCarrier);
+            Map<String, String> statisticPrice = StatisticsPrice.getStatisticPrice(filteredTicket);
             Writer.writeStatisticsToExcel(statisticPrice, sortedCarrier);
         } catch (IOException e) {
             // Обработка исключения в случае проблем с вводом-выводом
